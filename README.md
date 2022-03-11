@@ -1,6 +1,6 @@
 # Project 2 - Tootler
 
-Tootler is an android app that allows a user to view his Twitter timeline. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
+Tootler is an android app that allows a user to view their Twitter timeline. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
 Time spent: 8 hours spent in total
 
