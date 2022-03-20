@@ -47,7 +47,7 @@ class TweetsAdapter (val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<Tweets
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivProfileImage = itemView.findViewById<ImageView>(R.id.IvProflleImage)
+        val ivProfileImage = itemView.findViewById<ImageView>(R.id.IvProfileImage)
         val tvUserName = itemView.findViewById<TextView>(R.id.tvUsername)
         val tvTweetBody = itemView.findViewById<TextView>(R.id.tvTweetBody)
 

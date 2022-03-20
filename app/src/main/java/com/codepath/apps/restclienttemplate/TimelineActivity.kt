@@ -1,9 +1,14 @@
 package com.codepath.apps.restclienttemplate
 
+import android.content.Intent
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -33,7 +38,7 @@ class TimelineActivity : AppCompatActivity() {
         swipeContainer = findViewById(R.id.swipe_container)
 
         swipeContainer.setOnRefreshListener {
-            Log.i(TAG,"Refreshing the timeline")
+            Log.i(TAG, "Refreshing the timeline")
             populateHomeTimeline()
         }
 
@@ -54,6 +59,39 @@ class TimelineActivity : AppCompatActivity() {
         populateHomeTimeline()
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    // Handles click on menu item
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.compose) {
+            // Navigate to compose screen
+            val intent = Intent(this, ComposeActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+//     override fun OnActivityResult(requestCode:Int, resultCode:Int, data:Intent?){
+//        // Request_code is defined above
+//        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+//
+//            // Get data from our intent (our tweet)
+//            val tweet = data?.getParcelableExtra("tweet") as Tweet
+//
+//            // Update timeline
+//            // Modifying the data source of out tweets
+//            tweets.add(0, tweet)
+//
+//            // Update adapter
+//            adapter.notifyItemInserted(0)
+//            rvTweets.smoothScrollToPosition(0)
+//        }
+//        super.onActivityResult(requestCode, resultCode, data)
+//    }
 
     fun populateHomeTimeline(){
         client.populateHomeTimeline(object : JsonHttpResponseHandler (){
@@ -89,5 +127,6 @@ class TimelineActivity : AppCompatActivity() {
 
     companion object {
         val TAG = "TimelineActivity"
+        val REQUEST_CODE = 10
     }
 }
